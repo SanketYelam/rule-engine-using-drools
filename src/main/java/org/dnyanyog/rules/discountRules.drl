@@ -1,0 +1,40 @@
+import org.dnyanyog.dto.Customer
+
+rule "Young Customer Discount"
+when
+    $customer: Customer(age < 30)
+then
+    $customer.setDiscount(10);
+end
+
+rule "Middle-Aged Customer Discount"
+when
+    $customer: Customer(age >= 30 && age < 60)
+then
+    $customer.setDiscount(5);
+end
+
+rule "Senior Customer Discount"
+when
+    $customer: Customer(age >= 60)
+then
+    $customer.setDiscount(15);
+end
+
+
+rule "Ladies discount 5"
+when
+    $customer: Customer(gender == "F")
+then
+    $customer.setDiscount($customer.getDiscount()+5);
+end
+
+rule "Diwali Sale"
+when
+    $customer: Customer(gender == "F" || gender == "M")
+then
+    $customer.setDiscount($customer.getDiscount()+2);
+end
+
+
+
